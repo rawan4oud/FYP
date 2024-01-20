@@ -89,5 +89,5 @@ def main(file_path):
     return string_sequences
 
 if __name__ == "__main__":
-    midi_file_path = "Star Wars - The Imperial March [MIDIfind.com].mid"
+    midi_file_path = "Queen - Bohemian Rhapsody.mid"
     print(main(midi_file_path))
