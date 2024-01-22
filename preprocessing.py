@@ -23,13 +23,6 @@ def parse_midi(file_path):
                         break
 
     return notes_stream
-# def separate_tracks(notes_stream):
-#     tracks = [[] for _ in range(16)]
-
-#     for note in notes_stream:
-#         tracks[note['channel']].append(note)
-
-#     return tracks
 
 def separate_tracks(notes_stream):
     tracks = [[] for _ in range(16)]
@@ -68,6 +61,7 @@ def get_string_sequence(difference_sequence):
 def main(file_path):
     # Step 1: Parse MIDI file
     notes_stream = parse_midi(file_path)
+    print(notes_stream)
 
     # Step 2: Separate tracks by Channel
     tracks = separate_tracks(notes_stream)
