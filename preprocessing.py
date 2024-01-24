@@ -1,7 +1,8 @@
 import mido 
 from mido import MidiFile
 
-def parse_midi(file_path):
+def parse_midi(file_path): #Parse: According to the protocol, a MIDI file can be 
+                            #parsed into notes stream. Each note is denoted as a vector: (Channel , Start , Duration , Pitch,Velocity ) .
     midi_file = MidiFile(file_path)
     notes_stream = []
 
@@ -10,7 +11,7 @@ def parse_midi(file_path):
             if msg.type == 'note_on':
                 note = {
                     'channel': i,
-                    'start': msg.time,
+                    'start': msg.time, #the current time
                     'duration': None,
                     'pitch': msg.note,
                     'velocity': msg.velocity
@@ -23,6 +24,13 @@ def parse_midi(file_path):
                         break
 
     return notes_stream
+# def separate_tracks(notes_stream):
+#     tracks = [[] for _ in range(16)]
+
+#     for note in notes_stream:
+#         tracks[note['channel']].append(note)
+
+#     return tracks
 
 def separate_tracks(notes_stream):
     tracks = [[] for _ in range(16)]
@@ -61,7 +69,6 @@ def get_string_sequence(difference_sequence):
 def main(file_path):
     # Step 1: Parse MIDI file
     notes_stream = parse_midi(file_path)
-    print(notes_stream)
 
     # Step 2: Separate tracks by Channel
     tracks = separate_tracks(notes_stream)

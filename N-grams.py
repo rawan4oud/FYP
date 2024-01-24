@@ -39,7 +39,7 @@ if __name__ == "__main__":
     strings2 = ["ABCDGH", "XYZ", "123"]
     n = 3  # Adjust the value of n for different n-grams
 
-    matrix = compute_similarity_matrix(string_sequences1, string_sequences2, 3)
+    matrix = compute_similarity_matrix(string_sequences1, string_sequences3, 3)
 
     # Print or use the similarity matrix as needed
     # for i, row in enumerate(matrix):
