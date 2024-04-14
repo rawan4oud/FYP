@@ -5,19 +5,22 @@ import soundfile as sf
 import librosa
 import numpy as np
 from ngrams_preprocessing import midi_file_path1, midi_file_path2
+from smith_waterman import sliding
 
 def convert_midi_to_wav(midi_file):
-
     # Get the base name of the MIDI file
     midi_base_name = os.path.basename(midi_file)
 
     # Change the extension to '.wav' for the output file
     wav_file_name = os.path.splitext(midi_base_name)[0] + '.wav'
 
+    # Check if the WAV file already exists
+    wav_file_path = os.path.join(r'C:\Users\Sara\OneDrive\Desktop\FYP\Test Files', wav_file_name)
+
     # Compose the command to convert MIDI to WAV
     command = [
         r'C:\Program Files\MuseScore 4\bin\MuseScore4.exe',
-        '-o', os.path.join(r'C:\Users\Sara\OneDrive\Desktop\FYP\Test Files', wav_file_name),
+        '-o', wav_file_path,
         midi_file
     ]
 
@@ -89,6 +92,16 @@ def calculate_measures(onset_times, note_names):
 
     return measures
 
+def mapping_to_measures(measures, list):
+    mapped_measures = {}
+    list_index = 0
+
+    for i, measure in enumerate(measures):
+        mapped_measures[f"Measure {i + 1}"] = list[list_index:list_index + len(measure)]
+        list_index += len(measure)
+
+    return mapped_measures
+
 warnings.filterwarnings("ignore")
 
 
@@ -99,4 +112,3 @@ audio_file = os.path.join(os.path.splitext(midi_file_path1)[0]  + '.wav')
 adjust_tempo(audio_file, 120)
 onset_times, note_names = detect_notes(audio_file)
 measures = calculate_measures(onset_times, note_names)
-

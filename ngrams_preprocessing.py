@@ -103,8 +103,9 @@ def main(file_path):
     return string_sequence
 
 
-midi_file_path1 = "Test Files/Au claire de la lune (part 1) ref.mid"
-midi_file_path2 = "Test Files/Au claire de la lune (part 1) test.mid"
+midi_file_path1 = "Test Files/Petit papa noel musescore midi (reference).mid"
+midi_file_path1_mxl = "Test Files/Petit papa noel musescore midi (reference).mxl"
+midi_file_path2 = "Test Files/Petit papa noel Roudy midi.mid"
 
 string_sequences1 = main(midi_file_path1)
 string_sequences2 = main(midi_file_path2)
