@@ -9,7 +9,7 @@ def generate_new_list(tuple_list):
     new_list = []
     for tup in tuple_list:
         if tup[0] == 'Pitch Match':
-            if tup[1] == 'Duration Mismatch':
+            if tup[1] == 'Dur. Mismatch':
                 new_list.append(tup)
             else:
                 new_list.append('Match')
@@ -17,7 +17,7 @@ def generate_new_list(tuple_list):
             new_list.append(tup[0])
 
         elif tup[0] == 'Pitch Mismatch':
-            if tup[1] == 'Duration Mismatch':
+            if tup[1] == 'Dur. Mismatch':
                 new_list.append('No Match')
         else:
             new_list.append(tup[1])
@@ -42,7 +42,16 @@ def write_on_score():
                     else:
                         notes[i].addLyric(label)
 
-
+                    # Set the color based on the label type
+                    if label == 'No Match' or label == 'Dur. Mismatch' or label == 'Pitch Mismatch':
+                        notes[i].lyrics[-1].style.color = 'red'
+                    elif label == 'Sliding':
+                        notes[i].lyrics[-1].style.color = 'yellow'
+                    elif label == 'Match' or label == 'Dur. Match' or label == 'Pitch Match':
+                        notes[i].lyrics[-1].style.color = 'green'
+                    else:
+                        # Default color
+                        notes[i].lyrics[-1].style.color = 'black'
     # Get the base name of the original MusicXML file
     base_name = os.path.splitext(os.path.basename(midi_file_path1_mxl))[0]
 

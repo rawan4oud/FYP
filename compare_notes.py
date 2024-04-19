@@ -10,7 +10,7 @@ def compare_note_groups(linked_notes1, adjusted_note_durations_list2):
         else:
             # Ensure that the lengths of the groups are the same
             if len(group1) != len(group2):
-                matches.append("Length Mismatch")
+                matches.append("Len. Mismatch")
                 continue
             else:
                 # Check for pitch match
@@ -19,9 +19,9 @@ def compare_note_groups(linked_notes1, adjusted_note_durations_list2):
                 else:
                     # Check for duration match
                     if abs(group1[2] - group2[2])>200:
-                        matches.append("Duration Mismatch")
+                        matches.append("Dur. Mismatch")
                     else:
-                        matches.append("Duration Match")
+                        matches.append("Dur. Match")
 
     return matches
 
